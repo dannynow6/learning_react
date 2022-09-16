@@ -1,35 +1,16 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 function App() {
-  const [title, setTitle] = useState("");
-  const [color, setColor] = useState("#000000");
-  const submit = (e) => {
-    e.preventDefault();
-    alert(`${title}, ${color}`);
-    setTitle("");
-    setColor("#000000");
-  };
-  return (
-    <form onSubmit={submit}>
-      <input
-        value={title}
-        onChange={(event) =>
-          setTitle(event.target.value)
-        }
-        type="text"
-        placeholder="color title..."
-      />
-      <input
-        value={color}
-        type="color"
-        onChange={(event) =>
-          setColor(event.target.value)
-        }
-      />
-      <button>ADD</button>
-    </form>
-  );
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(`https://api.github.com/users/dannynow6`).then((response) => response.json()).then(setData);
+  }, []);
+  if(data) return (<pre>{JSON.stringify(data, null, 2)}</pre>);
+  return <h1>Data</h1>;
 }
 
+
 export default App;
+
