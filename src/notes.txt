@@ -1,3 +1,6 @@
+
+Note: from project directory, run "npm run build" to create a production build of site/app.
+
 GitHub API:
 
 https://api.github.com/users/dannynow6 
